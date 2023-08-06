@@ -1,4 +1,6 @@
 import { useState } from "react";
+import store from "../../store";
+import { createCustomer } from "./customerSlice";
 
 function Customer() {
   const [fullName, setFullName] = useState("");

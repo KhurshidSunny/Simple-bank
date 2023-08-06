@@ -1,52 +1,13 @@
 import { createStore } from "redux";
-import AccountReducer from "./accountReducer";
+import { combineReducers } from "redux";
+import AccountReducer from "./features/accounts/accountSlice";
+import customerReducer from "./features/customers/customerSlice";
 
-const store = createStore(AccountReducer);
+const rootReducer = combineReducers({
+  account: AccountReducer,
+  customer: customerReducer,
+});
 
-// store.dispatch({ type: "account/deposit", payload: 500 });
-// console.log(store.getState());
+const store = createStore(rootReducer);
 
-// store.dispatch({ type: "account/withdraw", payload: 200 });
-// console.log(store.getState());
-
-// store.dispatch({ type: "account/requestLoan", payload: 1100 });
-// console.log(store.getState());
-
-// store.dispatch({ type: "account/payLoan" });
-// console.log(store.getState());
-
-// Creating action creators
-
-function deposit(amount) {
-  return {
-    type: "account/deposit",
-    payload: amount,
-  };
-}
-
-function withdraw(amount) {
-  return {
-    type: "account/withdraw",
-    payload: amount,
-  };
-}
-
-function requestLoan(amount, purpose) {
-  return {
-    type: "account/requestLoan",
-    payload: { amount, purpose },
-  };
-}
-
-function payLoan() {
-  return {
-    type: "account/payLoan",
-  };
-}
-
-store.dispatch(deposit(1000));
-store.dispatch(withdraw(300));
-store.dispatch(requestLoan(5000, "Buy a mobile"));
-store.dispatch(payLoan());
-
-console.log(store.getState());
+export default store;

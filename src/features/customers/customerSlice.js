@@ -21,3 +21,19 @@ export default function customerReducer(state = initialStateCustomer, action) {
       return state;
   }
 }
+
+// Action creators
+
+export function createCustomer(fullname, nationalId) {
+  return {
+    type: "customer/createCustomer",
+    payload: { fullname, nationalId, createdAt: new Date().toISOString() },
+  };
+}
+
+export function updateName(fullname) {
+  return {
+    type: "customer/updateName",
+    payload: fullname,
+  };
+}
